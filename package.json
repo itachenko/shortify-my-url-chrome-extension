@@ -1,0 +1,20 @@
+{
+  "name": "shortify-my-url-chrome-extension",
+  "version": "1.0.0",
+  "description": "Chrome extensions for quick access to Shortify My URL!",
+  "main": "index.js",
+  "scripts": {
+    "watch": "webpack --watch",
+    "build": "webpack"
+  },
+  "keywords": [],
+  "author": "Ivan Tachenko",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.4.0",
+    "webpack-cli": "^4.2.0"
+  }
+}

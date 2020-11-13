@@ -1,0 +1,14 @@
+{
+  "manifest_version": 2,
+
+  "name": "Shortify My Url",
+  "version": "1.0",
+  "description": "Chrome extensions for quick access to Shortify My URL!",
+
+  "permissions": ["tabs"],
+
+  "browser_action": {
+    "default_icon": "icon16.png",
+    "default_popup": "index.html"
+  }
+}
