@@ -1,0 +1,79 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --clr-background: #fafafa;
+  --clr-dark: #0c0e36;
+  --clr-selected: #e9eee6;
+  --font: "Work Sans", sans-serif;
+}
+
+body {
+  background-color: var(--clr-background);
+  font-family: var(--font);
+  font-size: 1.125rem;
+  color: var(--clr-dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+header {
+  padding: 1em;
+}
+
+.title {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.main {
+  text-align: center;
+  padding: 1em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.main-form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-form-btn {
+  margin: 1rem 0;
+  max-width: 100%;
+  border: 1px solid;
+  border-radius: 5px;
+  background-color: transparent;
+  font-family: var(--font);
+  font-size: 1rem;
+  padding: 0.75em 1.25rem;
+}
+
+.main-form-btn:hover {
+  cursor: pointer;
+  background: var(--clr-selected);
+  transition: all 0.3s ease;
+}
+
+.main-result {
+  background: var(--clr-selected);
+}
+
+.copying-message {
+  display: none;
+}
+
+.loading-message {
+  display: none;
+}

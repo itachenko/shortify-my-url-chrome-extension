@@ -1,0 +1,14 @@
+{
+  "manifest_version": 2,
+  "name": "Shortify My Url Extension",
+  "version": "0.0.1",
+  "description": "Chrome extensions for short link generation with Shortify My URL service.",
+  "icons": {
+    "16": "icon16.png"
+  },
+  "permissions": ["tabs"],
+  "browser_action": {
+    "default_icon": "icon16.png",
+    "default_popup": "index.html"
+  }
+}

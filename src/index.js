@@ -1,5 +1,6 @@
 "use strict";
 
+import "regenerator-runtime";
 import axios from "axios";
 
 const apiEndpoint = "http://shortify.one/api/url";
@@ -14,20 +15,31 @@ chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
 });
 
 async function shortifyCurrentUrl() {
-  try {
-    displayLoadingMessage(true);
-    const response = await axios.post(apiEndpoint, {
-      url: url,
-    });
+  const locallyStoredUrl = localStorage.getItem(url);
 
-    displayLoadingMessage(false);
-    resultEl.textContent = response.data.shortUrl;
-    displayCopyMessage();
-    copyToClipboard();
-  } catch (error) {
-    displayLoadingMessage(false);
-    resultEl.textContent = "Invalid or too short original URL";
+  if (locallyStoredUrl) {
+    showResult(locallyStoredUrl);
+  } else {
+    try {
+      displayLoadingMessage(true);
+      const response = await axios.post(apiEndpoint, {
+        url: url,
+      });
+      displayLoadingMessage(false);
+
+      showResult(response.data.shortUrl);
+      localStorage.setItem(url, response.data.shortUrl);
+    } catch (error) {
+      displayLoadingMessage(false);
+      resultEl.textContent = "Invalid or too short original URL";
+    }
   }
+}
+
+function showResult(text){
+  resultEl.textContent = text;
+  copyMessageEl.style.display = "block";
+  copyToClipboard();
 }
 
 function copyToClipboard() {
@@ -37,10 +49,6 @@ function copyToClipboard() {
   textArea.select();
   document.execCommand("Copy");
   textArea.remove();
-}
-
-function displayCopyMessage() {
-  copyMessageEl.style.display = "block";
 }
 
 function displayLoadingMessage(isVisible) {
