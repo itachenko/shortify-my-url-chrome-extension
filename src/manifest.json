@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Shortify My Url Extension",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Chrome extensions for short link generation with Shortify My URL service.",
   "icons": {
     "16": "icon16.png"
