@@ -1,7 +1,4 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
-name: Node.js CI
+name: Shortify My URL - Chrome Extension
 
 on:
   push:
@@ -20,18 +17,14 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Extract package.json content
-      id: get_version
+    - name: Get package.json content
+      id: get_packageJson
       run: |
         content=`cat ./package.json`
         content="${content//'%'/'%25'}"
         content="${content//$'\n'/'%0A'}"
         content="${content//$'\r'/'%0D'}"
         echo "::set-output name=packageJson::$content"
-
-    - name: Print package version
-      run: |
-        echo "${{fromJson(steps.get_version.outputs.packageJson).version}}"
 
     - name: Setup Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
@@ -46,6 +39,6 @@ jobs:
     - name: Archive production artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: ${{fromJson(steps.get_version.outputs.packageJson).name}}-${{fromJson(steps.get_version.outputs.packageJson).version}}
+        name: ${{fromJson(steps.get_packageJson.outputs.packageJson).name}}-${{fromJson(steps.get_packageJson.outputs.packageJson).version}}
         path: |
           dist
